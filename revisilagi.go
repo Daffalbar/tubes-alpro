@@ -166,27 +166,25 @@ func caridatafilm() {
 		fmt.Print("Masukkan Genre Film: ")
 		fmt.Scanln(&kata)
 
-		sorted := make([]Film, len(film))
-		copy(sorted, film)
-		for i := 1; i < len(sorted); i++ {
-			key := sorted[i]
+		for i := 1; i < len(film); i++ {
+			key := film[i]
 			j := i - 1
-			for j >= 0 && sorted[j].Genre > key.Genre {
-				sorted[j+1] = sorted[j]
+			for j >= 0 && film[j].Genre > key.Genre {
+				film[j+1] = film[j]
 				j--
 			}
-			sorted[j+1] = key
+			film[j+1] = key
 		}
 
 		lo := 0
-		hi := len(sorted) - 1
+		hi := len(film) - 1
 		midFound := -1
 		for lo <= hi {
 			mid := (lo + hi) / 2
-			if sorted[mid].Genre == kata {
+			if film[mid].Genre == kata {
 				midFound = mid
 				break
-			} else if sorted[mid].Genre < kata {
+			} else if film[mid].Genre < kata {
 				lo = mid + 1
 			} else {
 				hi = mid - 1
@@ -197,11 +195,11 @@ func caridatafilm() {
 			fmt.Println("Film tidak ditemukan.")
 		} else {
 			left := midFound
-			for left > 0 && sorted[left-1].Genre == kata {
+			for left > 0 && film[left-1].Genre == kata {
 				left--
 			}
-			for i := left; i < len(sorted) && sorted[i].Genre == kata; i++ {
-				cetakfilm(sorted[i])
+			for i := left; i < len(film) && film[i].Genre == kata; i++ {
+				cetakfilm(film[i])
 			}
 		}
 
