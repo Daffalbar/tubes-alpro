@@ -178,7 +178,7 @@ func caridatafilm() {
 			key := film[i]
 			j := i - 1
 
-			for j >= 0 && film[j].Genre > key.Genre {
+			for j >=0 && film[j].Genre > key.Genre {
 				film[j+1] = film[j]
 				j--
 			}
@@ -187,11 +187,11 @@ func caridatafilm() {
 
 		lo := 0
 		hi := len(film) - 1
-		midFound := -1
+		midfound:= -1
 		for lo <= hi {
-			mid := (lo + hi) / 2
+			mid := (lo + hi) /2
 			if film[mid].Genre == kata {
-				midFound = mid
+				midfound = mid
 				break
 
 			} else if film[mid].Genre < kata {
@@ -201,10 +201,10 @@ func caridatafilm() {
 			}
 		}
 
-		if midFound == -1 {
+		if midfound == -1 {
 			fmt.Println("Film tidak ditemukan")
 		} else { 
-			left := midFound
+			left := midfound
 			for left > 0 && film[left-1].Genre == kata {
 				left--
 			}
@@ -285,25 +285,25 @@ func tampilkanstatistik() {
 	for i := 0; i < len(film); i++ {
 		total += film[i].Rating
 	}
-	rataRata := total / float32(len(film))
+	rerata := total / float32(len(film))
 
 	fmt.Println("\n=== STATISTIK FILM ===")
 	fmt.Println("Total Film      :", len(film))
-	fmt.Printf("Rata-rata Rating: %.2f\n", rataRata)
+	fmt.Printf("Rata-rata Rating: %.2f\n", rerata)
 	fmt.Println("Jumlah Film per Genre:")
 
 	for i := 0; i < len(film); i++ {
 
 		genre := film[i].Genre
-		sudahDihitung := false
+		sudahdihitung := false
 
 		for j := 0; j < i; j++ {
 			if film[j].Genre == genre {
-				sudahDihitung = true
+				sudahdihitung = true
 				break
 			}
 		}
-		if !sudahDihitung {
+		if !sudahdihitung {
 			jumlah := 0
 			for k := 0; k < len(film); k++ {
 				if film[k].Genre == genre {
