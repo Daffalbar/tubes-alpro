@@ -86,7 +86,7 @@ func editfilm() {
 			fmt.Scanln(&film[i].Tahun)
 			fmt.Print("Deskripsi Film: ")
 			fmt.Scanln(&film[i].Desk)
-			fmt.Print("Rating Film (0.0 - 10.0): ")
+			fmt.Print("Rating Film (0.0 - 5.0): ")
 			fmt.Scanln(&film[i].Rating)
 			fmt.Print("Genre Film: ")
 			fmt.Scanln(&film[i].Genre)
@@ -103,11 +103,13 @@ func hapusfilm() {
 	fmt.Scanln(&n)
 	for i := 0; i < len(film); i++ {
 		if film[i].ID == n {
+
 			for j := i; j < len(film)-1; j++ {
 				film[j] = film[j+1]
 			}
 			film = film[:len(film)-1]
 			totalfilm--
+
 			for j := i; j < len(film); j++ {
 				film[j].ID = j + 1
 			}
@@ -142,12 +144,14 @@ func lihatlistfilm() {
 func caridatafilm() {
 	fmt.Println("1. Cari Berdasarkan Judul (Sequential Search)")
 	fmt.Println("2. Cari Berdasarkan Genre (Binary Search)")
+
 	var pilih int
 	fmt.Print("Masukkan Pilihan: ")
 	fmt.Scanln(&pilih)
 
 	if pilih == 1 {
 		var kata string
+
 		fmt.Print("Masukkan Judul Film: ")
 		fmt.Scanln(&kata)
 		ketemu := false
@@ -163,12 +167,15 @@ func caridatafilm() {
 
 	} else if pilih == 2 {
 		var kata string
+
 		fmt.Print("Masukkan Genre Film: ")
 		fmt.Scanln(&kata)
 
 		for i := 1; i < len(film); i++ {
+
 			key := film[i]
 			j := i - 1
+
 			for j >= 0 && film[j].Genre > key.Genre {
 				film[j+1] = film[j]
 				j--
@@ -184,6 +191,7 @@ func caridatafilm() {
 			if film[mid].Genre == kata {
 				midFound = mid
 				break
+
 			} else if film[mid].Genre < kata {
 				lo = mid + 1
 			} else {
@@ -193,7 +201,7 @@ func caridatafilm() {
 
 		if midFound == -1 {
 			fmt.Println("Film tidak ditemukan.")
-		} else {
+		} else { 
 			left := midFound
 			for left > 0 && film[left-1].Genre == kata {
 				left--
@@ -211,6 +219,7 @@ func caridatafilm() {
 func urutkandatafilm() {
 	fmt.Println("1. Urutkan Berdasarkan Rating (Selection Sort)")
 	fmt.Println("2. Urutkan Berdasarkan Tahun (Insertion Sort)")
+
 	var pilih int
 	fmt.Print("Masukkan Pilihan: ")
 	fmt.Scanln(&pilih)
@@ -231,7 +240,9 @@ func urutkandatafilm() {
 
 	} else if pilih == 2 {
 		n := len(film)
+
 		for i := 1; i < n; i++ {
+
 			key := film[i]
 			j := i - 1
 			for j >= 0 && film[j].Tahun < key.Tahun {
@@ -245,6 +256,20 @@ func urutkandatafilm() {
 
 	} else {
 		fmt.Println("Pilihan tidak valid.")
+		return
+	}
+
+	n := len(film)
+
+	for i := 1; i < n; i++ {
+		key := film[i]
+		j := i - 1
+
+		for j >= 0 && film[j].ID > key.ID {
+			film[j+1] = film[j]
+			j--
+		}
+		film[j+1] = key
 	}
 }
 
@@ -264,9 +289,12 @@ func tampilkanstatistik() {
 	fmt.Println("Total Film      :", len(film))
 	fmt.Printf("Rata-rata Rating: %.2f\n", rataRata)
 	fmt.Println("Jumlah Film per Genre:")
+
 	for i := 0; i < len(film); i++ {
+
 		genre := film[i].Genre
 		sudahDihitung := false
+
 		for j := 0; j < i; j++ {
 			if film[j].Genre == genre {
 				sudahDihitung = true
@@ -280,8 +308,9 @@ func tampilkanstatistik() {
 					jumlah++
 				}
 			}
-			fmt.Printf("  %s : %d film\n", genre, jumlah)
-		}
+			fmt.Printf("%s : %d film\n", genre, jumlah)
+		}	
+
 	}
 	fmt.Println("======================")
 }
