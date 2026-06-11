@@ -12,6 +12,8 @@ type Film struct {
 }
 
 var film []Film
+
+
 var totalfilm int = 0
 
 func main() {
@@ -50,7 +52,7 @@ func main() {
 			fmt.Println("--- Program Selesai ---")
 			return
 		default:
-			fmt.Println("Pilihan tidak valid.")
+			fmt.Println("Pilihan tidak valid")
 		}
 	}
 }
@@ -94,7 +96,7 @@ func editfilm() {
 			return
 		}
 	}
-	fmt.Println("Film tidak ditemukan.")
+	fmt.Println("Film tidak ditemukan")
 }
 
 func hapusfilm() {
@@ -117,7 +119,7 @@ func hapusfilm() {
 			return
 		}
 	}
-	fmt.Println("Film tidak ditemukan.")
+	fmt.Println("Film tidak ditemukan")
 }
 
 func cetakfilm(f Film) {
@@ -133,7 +135,7 @@ func cetakfilm(f Film) {
 
 func lihatlistfilm() {
 	if len(film) == 0 {
-		fmt.Println("Belum ada data film.")
+		fmt.Println("Belum ada data film")
 		return
 	}
 	for i := 0; i < len(film); i++ {
@@ -162,7 +164,7 @@ func caridatafilm() {
 			}
 		}
 		if !ketemu {
-			fmt.Println("Film tidak ditemukan.")
+			fmt.Println("Film tidak ditemukan")
 		}
 
 	} else if pilih == 2 {
@@ -200,7 +202,7 @@ func caridatafilm() {
 		}
 
 		if midFound == -1 {
-			fmt.Println("Film tidak ditemukan.")
+			fmt.Println("Film tidak ditemukan")
 		} else { 
 			left := midFound
 			for left > 0 && film[left-1].Genre == kata {
@@ -235,7 +237,7 @@ func urutkandatafilm() {
 			}
 			film[i], film[maxIdx] = film[maxIdx], film[i]
 		}
-		fmt.Println("Film diurutkan berdasarkan rating tertinggi ke terendah.")
+		fmt.Println("Film diurutkan berdasarkan rating tertinggi ke terendah")
 		lihatlistfilm()
 
 	} else if pilih == 2 {
@@ -251,7 +253,7 @@ func urutkandatafilm() {
 			}
 			film[j+1] = key
 		}
-		fmt.Println("Film diurutkan berdasarkan tahun terbaru ke terlama.")
+		fmt.Println("Film diurutkan berdasarkan tahun terbaru ke terlama")
 		lihatlistfilm()
 
 	} else {
